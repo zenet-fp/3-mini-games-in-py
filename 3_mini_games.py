@@ -1,37 +1,15 @@
 import tkinter
-from binascii import a2b_hex
-from tkinter import *
+
 import random
 import time
 import threading
 
-
-# ]   ==   ]]
-classes = "qwertyuiop"
-            #   ]   ] --
-
-class Methods:
-    def __init__(self, static, stop, stopped, run, running, failure):
-        self.cut = False
-        self.static = False
-
-    def class_start(self):
-
-        pass
-    # // ---------------
-
-
-
 class MainGame:
-    def __init__(self, player ):
-        self.player = player
+    def __init__(self ):
         self.game_mode = ""
         self.difficulty = ""
-        #self.runtime = len(__obj=classes)
 
-
-
-
+            
     def main_game_allocation(self):
         print("Welcome to my game")
         print("Choose a difficulty: easy / medium / hard: ")
@@ -52,9 +30,6 @@ class MainGame:
             self.game_mode = "Logic Puzzle"
             self.hard_alloc()
 
-       # print(f"You have chosen the {self.difficulty} level, therefore playing: {self.game_mode} ")
-
-
     def easy_alloc(self):
         start = HigherOrLower()
         start.main_screen()
@@ -68,7 +43,6 @@ class MainGame:
     def hard_alloc(self):
         start = LogicPuzzle()
         start.run_game()
-
 
 
 class HigherOrLower:
@@ -86,18 +60,7 @@ class HigherOrLower:
 
     def generate_number(self):
         random_number = random.randint(1, 100)
-
-          #  player_guess = input("Enter you guess: ")
-          #  if player_guess.isdigit():
-          #      player_guess = int(player_guess)
-          #      break
-
-           # elif player_guess.isalpha():
-            #    print("Error, guesses should be numbers.")
-
-            #else:
-             #   print("Error, try again")
-
+                
         while True:
             player_guess = int(input("Enter you guess (1-100): "))
             diff = abs(player_guess - random_number)
@@ -185,8 +148,6 @@ class EscapeTheRoom:
 
         countdown_thread = threading.Thread(target=self.countdown)
         countdown_thread.start()
-
-
         questions = self.game_questions()
 
         while True:
@@ -265,7 +226,6 @@ class LogicPuzzle:
 
 
     def logic_game(self):
-
         countdown_thread = threading.Thread(target=self.countdown)
         countdown_thread.start()
 
@@ -298,25 +258,6 @@ class LogicPuzzle:
                 print("Well Done")
                 print("\nYou have escaped the room / / ")
                 break
-
-
-#        [
-# ----
-    # / ---
-        # // --
-
-        # ]
-
-class Visuals:
-    def __init__(self, params_time):
-        self.params_time = params_time
-        self.window = tkinter.Tk()
-        self.window.geometry(f"{params_time}")
-
-    def attachment_visuals(self):
-
-        pass
-    # // -------------
 
 
 if __name__ == '__main__':
