@@ -210,7 +210,7 @@ class LogicPuzzle:
             "question_3": {
                 "The question": "If there are 5 prisoners in a room: a, b, c, d, e, and one person dies after a guard checks in on them"
                                 "\nwho are the 5 suspects?",
-                "answer": "all of them" 
+                "answer": ["all of them" , "a, b, c, d, e"]
             }
         }
         return logic_questions
