@@ -1,21 +1,22 @@
 import tkinter
-
 import random
 import time
 import threading
 
+
 class MainGame:
-    def __init__(self ):
+    def __init__(self, player ):
+        self.player = player
         self.game_mode = ""
         self.difficulty = ""
 
-            
+
     def main_game_allocation(self):
         print("Welcome to my game")
-        print("Choose a difficulty: easy / medium / hard: ")
+        print("Choose a difficulty: easy / medium / hard ")
         user_difficulty = input("Chosen difficulty: ").lower()
 
-        if user_difficulty== "easy":
+        if user_difficulty == "easy":
             self.difficulty = "easy"
             self.game_mode = "Higher or Lower"
             self.easy_alloc()
@@ -25,10 +26,11 @@ class MainGame:
             self.game_mode = "Escape The Room"
             self.medium_alloc()
 
-        elif user_difficulty== "hard" :
+        elif user_difficulty == "hard" :
             self.difficulty = "hard"
             self.game_mode = "Logic Puzzle"
             self.hard_alloc()
+
 
     def easy_alloc(self):
         start = HigherOrLower()
@@ -43,6 +45,7 @@ class MainGame:
     def hard_alloc(self):
         start = LogicPuzzle()
         start.run_game()
+
 
 
 class HigherOrLower:
@@ -60,7 +63,7 @@ class HigherOrLower:
 
     def generate_number(self):
         random_number = random.randint(1, 100)
-                
+
         while True:
             player_guess = int(input("Enter you guess (1-100): "))
             diff = abs(player_guess - random_number)
@@ -85,6 +88,7 @@ class EscapeTheRoom:
         self.score = 0
         self.score_required = 5
 
+
     def start_game(self):
         print()
         print(f"You have entered the maze, your task is to escape >>>>>>>>>>>>>>>>>>>>>>")
@@ -97,6 +101,8 @@ class EscapeTheRoom:
         print("-------------------------------------------------------------------------")
 
         self.game_logic()
+
+
 
     def game_questions(self):
         math_questions = {
@@ -148,6 +154,8 @@ class EscapeTheRoom:
 
         countdown_thread = threading.Thread(target=self.countdown)
         countdown_thread.start()
+
+
         questions = self.game_questions()
 
         while True:
@@ -177,7 +185,9 @@ class EscapeTheRoom:
                 print("Well Done")
                 print("\nYou have escaped the room / / ")
                 break
-                
+
+
+
 class LogicPuzzle:
     def __init__(self):
         self.time_remaining = 75
@@ -210,7 +220,7 @@ class LogicPuzzle:
             "question_3": {
                 "The question": "If there are 5 prisoners in a room: a, b, c, d, e, and one person dies after a guard checks in on them"
                                 "\nwho are the 5 suspects?",
-                "answer": ["all of them" , "a, b, c, d, e"]
+                "answer": ["all of them", "a, b, c, d, e"]
             }
         }
         return logic_questions
@@ -220,12 +230,13 @@ class LogicPuzzle:
         for x in range(self.time_remaining, 0, -1):
             time.sleep(1)
             self.time_remaining -= 1
-        print("Time is up")
+        print("\nTime is up")
         print("You have failed the mission")
         exit()
 
 
     def logic_game(self):
+
         countdown_thread = threading.Thread(target=self.countdown)
         countdown_thread.start()
 
@@ -250,7 +261,7 @@ class LogicPuzzle:
             else:
                 print()
                 print("Incorrect answer / / ")
-                print(f"The correct answer was: {correct_answer}")
+                print(f"The correct answers: {correct_answer}")
                 questions.pop(pick_key)
 
             if self.score == 3:
